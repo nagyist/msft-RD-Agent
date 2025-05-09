@@ -53,6 +53,8 @@ class PipelineCoSTEEREvaluator(CoSTEEREvaluator):
                 final_decision=False,
             )
 
+        if not hasattr(self.scen, 'debug_path'):
+            self.scen.debug_path = f"{DS_RD_SETTING.local_data_path}/sample/{self.scen.competition}"
         env = get_ds_env(extra_volumes={self.scen.debug_path: T("scenarios.data_science.share:scen.input_path").r()})
 
         # Clean the scores.csv & submission.csv.
